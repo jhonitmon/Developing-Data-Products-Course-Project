@@ -3,9 +3,9 @@
     "path": "~/Documents/R Projects/Developing Data Products Course Project/DDP_Course_Project/server.R",
     "project_path": "DDP_Course_Project/server.R",
     "type": "r_source",
-    "hash": "0",
+    "hash": "2146158264",
     "contents": "",
-    "dirty": true,
+    "dirty": false,
     "created": 1666707168141.0,
     "source_on_save": false,
     "relative_order": 2,
@@ -16,11 +16,11 @@
         "scrollLine": "0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1666715998,
+    "lastKnownWriteTime": 1666716525,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1666716322294,
+    "last_content_update": 1666716525378,
     "read_only": false,
     "read_only_alternatives": []
 }

@@ -9,17 +9,25 @@
 
 library(shiny)
 
-# Define server logic required to draw a histogram
+# define server logic required to dpredict gas mileage
 shinyServer(function(input, output) {
   
+  # loading libraries
   library(ggplot2)
   library(dplyr)
   library(caret)
   
+  # loading mpg data set
   data("mpg")
+  
+  # removing manufacturer and model columns
   data <- mpg[,-c(1,2)]
+  
+  # simplification of the trans variable
   data$trans <- gsub("auto.+","auto",data$trans)
   data$trans <- gsub("manual.+","manual",data$trans)
+  
+  # factorization of all non-number variables
   data$trans <- as.factor(data$trans)
   data$year <- as.factor(data$year)
   data$drv <- as.factor(data$drv)
@@ -27,9 +35,11 @@ shinyServer(function(input, output) {
   data$class <- as.factor(data$class)
   data$cyl <- as.factor(data$cyl)
   
+  # application of linear models to data
   modelCty <- lm(cty ~ ., data = data[,-7])
   modelHwy <- lm(hwy ~ ., data = data[,-6])
   
+  # prediction based on the drop down menus and slider from the ui
   pred_Cty <- reactive({
     pred_df <- data.frame("displ" = input$sliderDispl, "year" = as.factor(input$radioYear), "cyl" = as.factor(input$radioCyl),
                         "trans" = as.factor(input$radioTrans), "drv" = as.factor(input$radioDrv),
@@ -44,6 +54,7 @@ shinyServer(function(input, output) {
     unname(round(predict(modelHwy,pred_df),2))
   })
   
+  # definition of output variables
   output$predCty <- renderText({pred_Cty()})
   output$predHwy <- renderText({pred_Hwy()})
 
